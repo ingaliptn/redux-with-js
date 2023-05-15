@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createStore, bindActionCreators } from "redux";
 import reducer from "./reducer";
-import { inc, dec, rnd } from "./actions";
+import * as actions from "./actions";
 
 const store = createStore(reducer);
 
@@ -14,14 +14,8 @@ const update = () => {
 
 subscribe(update);
 
-// const bindActionCreator =
-//   (creator, dispatch) =>
-//   (...args) => {
-//     dispatch(creator(...args));
-//   };
-
 const { incDispatch, decDispatch, rndDispatch } = bindActionCreators(
-  { incDispatch: inc, decDispatch: dec, rndDispatch: rnd },
+  actions,
   dispatch
 );
 
