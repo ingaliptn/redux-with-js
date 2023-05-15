@@ -14,15 +14,25 @@ const update = () => {
 
 subscribe(update);
 
+const bindActionCreator =
+  (creator, dispatch) =>
+  (...args) => {
+    dispatch(creator(...args));
+  };
+
+const incDispath = bindActionCreator(inc, dispatch);
+const decDispath = bindActionCreator(dec, dispatch);
+const rndDispath = bindActionCreator(rnd, dispatch);
+
 document.getElementById("inc").addEventListener("click", () => {
-  dispatch(inc());
+  incDispath();
 });
 document.getElementById("dec").addEventListener("click", () => {
-  dispatch(dec());
+  decDispath();
 });
 document.getElementById("rnd").addEventListener("click", () => {
   const value = Math.floor(Math.random() * 10);
-  dispatch(rnd(value));
+  rndDispath(value);
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
